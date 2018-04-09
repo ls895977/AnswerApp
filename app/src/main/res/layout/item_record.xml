@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f4f4f4"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dip_10"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/dip_10">
+
+        <TextView
+            android:id="@+id/record_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="建筑工程项目施工相关法规考试001"
+            android:textSize="@dimen/fond_16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/item_ll_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dip_10">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="分数:"
+                    android:textColor="#9a9a9a"
+                    android:textSize="@dimen/fond_10sp" />
+
+                <TextView
+                    android:id="@+id/record_fsu"
+                    android:layout_marginLeft="@dimen/dip_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="90"
+                    android:textColor="#04bb68"
+                    android:textSize="@dimen/fond_10sp" />
+
+                <TextView
+                    android:id="@+id/record_max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="/150"
+                    android:textColor="#9a9a9a"
+                    android:textSize="@dimen/fond_10sp" />
+            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/dip_10"
+                android:src="@mipmap/icon_homewrite" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

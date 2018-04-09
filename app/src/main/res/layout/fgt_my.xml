@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dip_15"
+        android:background="@color/app_color"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dip_20">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:padding="@dimen/dip_10"
+                android:text="我的"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fond_18sp" />
+
+            <ImageView
+                android:id="@+id/my_information"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/dip_10"
+                android:src="@mipmap/icon_mymessage" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dip_20"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image1"
+                android:layout_width="@dimen/dip_80"
+                android:layout_height="@dimen/dip_80"
+                android:layout_marginLeft="@dimen/dip_20"
+                android:src="@mipmap/ic_launcher_round"
+                app:civ_border_color="#ffffff"
+                app:civ_border_width="2dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dip_20"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/my_nickName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="心晴ZZ"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/my_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dip_10"
+                    android:text="18219815234"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/my_personalcenter"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/dip_5"
+            android:drawableTop="@mipmap/icon_personal"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/dip_20"
+            android:paddingTop="@dimen/dip_10"
+            android:text="个人中心" />
+
+        <TextView
+            android:id="@+id/My_collection"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/dip_5"
+            android:drawableTop="@mipmap/icon_shoucang"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/dip_20"
+            android:paddingTop="@dimen/dip_10"
+            android:text="我的收藏" />
+
+        <TextView
+            android:id="@+id/myaccount"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/dip_5"
+            android:drawableTop="@mipmap/icon_guanli"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/dip_20"
+            android:paddingTop="@dimen/dip_10"
+            android:text="账户管理" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/my_guanyu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="@dimen/dip_2"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/icon_guanyu"
+        android:drawablePadding="@dimen/dip_5"
+        android:padding="@dimen/dip_10"
+        android:text="关于得分王" />
+
+    <TextView
+        android:id="@+id/my_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="@dimen/dip_1"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/icon_yijian"
+        android:drawablePadding="@dimen/dip_5"
+        android:padding="@dimen/dip_10"
+        android:text="意见反馈" />
+
+    <TextView
+        android:id="@+id/my_install"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dip_1"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/icon_setting"
+        android:drawablePadding="@dimen/dip_5"
+        android:padding="@dimen/dip_10"
+        android:text="设置" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dip_1"
+        android:background="@color/white" />
+</LinearLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:id="@+id/myFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/app_color"
+        android:orientation="horizontal"
+        android:padding="3dp">
+
+        <TextView
+            android:id="@+id/tab_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dip"
+            android:drawableTop="@drawable/tabhome"
+            android:gravity="center"
+            android:text="首页"
+            android:textColor="#ebf8f1" />
+
+        <TextView
+            android:id="@+id/tab_Examination"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dip"
+            android:drawableTop="@drawable/tabexamination"
+            android:gravity="center"
+            android:text="考试"
+            android:textColor="#ebf8f1" />
+
+
+        <TextView
+            android:id="@+id/tab_Record"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dip"
+            android:drawableTop="@drawable/tabrecord"
+            android:gravity="center"
+            android:text="记录"
+            android:textColor="#ebf8f1" />
+
+        <TextView
+            android:id="@+id/tab_My"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dip"
+            android:drawableTop="@drawable/tabmy"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="#ebf8f1" />
+    </LinearLayout>
+
+</RelativeLayout>

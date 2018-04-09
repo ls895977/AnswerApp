@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_60"
+        android:background="@color/app_color">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="@dimen/dip_10"
+            android:text="登录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fond_16sp" />
+
+        <TextView
+            android:id="@+id/login_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="@dimen/dip_10"
+            android:paddingRight="@dimen/dip_5"
+            android:text="注册"
+            android:textColor="@color/white"
+            android:textSize="@dimen/fond_16sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dip_80"
+        android:src="@mipmap/icon_logintitle" />
+
+    <EditText
+        android:id="@+id/login_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dip_60"
+        android:layout_marginRight="@dimen/dip_60"
+        android:layout_marginTop="@dimen/dip_60"
+        android:text="15708319324"
+        android:background="@drawable/boder_logon"
+        android:gravity="center"
+        android:hint="用户名/手机号"
+        android:padding="@dimen/dip_10"
+        android:textColorHint="#cfcfcf"
+        android:textSize="@dimen/fond_14sp" />
+
+    <EditText
+        android:id="@+id/login_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dip_60"
+        android:layout_marginRight="@dimen/dip_60"
+        android:layout_marginTop="@dimen/dip_15"
+        android:text="456789"
+        android:background="@drawable/boder_logon"
+        android:gravity="center"
+        android:hint="用户密码"
+        android:inputType="textPassword"
+        android:padding="@dimen/dip_10"
+        android:textColorHint="#cfcfcf"
+        android:textSize="@dimen/fond_14sp" />
+
+    <TextView
+        android:id="@+id/login_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dip_60"
+        android:layout_marginRight="@dimen/dip_60"
+        android:layout_marginTop="@dimen/dip_15"
+        android:background="@drawable/bt_login"
+        android:gravity="center"
+        android:padding="@dimen/dip_10"
+        android:text="立即登录"
+        android:textColor="@color/white"
+        android:textColorHint="#cfcfcf"
+        android:textSize="@dimen/fond_14sp" />
+
+    <TextView
+        android:id="@+id/login_forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/dip_10"
+        android:text="忘记密码"
+        android:textColor="#bbbbbb"
+        android:textColorHint="#cfcfcf"
+        android:textSize="@dimen/fond_14sp" />
+</LinearLayout>

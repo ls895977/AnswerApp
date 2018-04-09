@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/dip_10"
+        android:text="答题器，单选器，多选题，即时反馈，高效教学，趣味抢答，营造课堂学氛围，提高学生学习兴趣" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/dip_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dip_10"
+            android:gravity="center_vertical"
+            android:text="2017-09-28"
+            android:textColor="#989898"
+            android:textSize="@dimen/fond_14sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_colletiontv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_5"
+        android:background="#f5f5f5" />
+</LinearLayout>

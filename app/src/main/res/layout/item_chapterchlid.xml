@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f4f4f4">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dip_1"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/homechlid_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dip_10"
+            android:paddingRight="@dimen/dip_10"
+            android:paddingTop="@dimen/dip_10"
+            android:text="建筑工程项目施工相关法规考试001"
+            android:textSize="@dimen/fond_16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dip_10"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/homechlid_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="2687人答过"
+                android:textColor="#9a9a9a" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/dip_10"
+                android:src="@mipmap/icon_homewrite" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

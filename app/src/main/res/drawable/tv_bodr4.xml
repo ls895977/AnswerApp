@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#36c573" />//答题卡正确题状态
+    <corners android:radius="720dip" />
+</shape>

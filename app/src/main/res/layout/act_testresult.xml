@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f4f4f4"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_60"
+            android:background="@color/app_color">
+
+            <ImageView
+                android:id="@+id/TestResult_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="@dimen/dip_10"
+                android:paddingBottom="@dimen/dip_10"
+                android:src="@mipmap/icon_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:paddingBottom="@dimen/dip_10"
+                android:text="测试结果"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fond_16sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/dip_20">
+
+            <LinearLayout
+                android:id="@+id/testresult_defen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dip_20"
+                android:gravity="center_horizontal"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="得分："
+                    android:textSize="@dimen/fond_16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="69"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/fond_25sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dip_100"
+                android:layout_marginTop="@dimen/dip_30"
+                android:background="@drawable/tv_bodr3"
+                android:paddingBottom="@dimen/dip_2"
+                android:paddingLeft="@dimen/dip_5"
+                android:paddingRight="@dimen/dip_5"
+                android:paddingTop="@dimen/dip_2"
+                android:text="分"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fond_14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/testresult_defen"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dip_10"
+                android:paddingLeft="@dimen/dip_40"
+                android:text="总分：100分"
+                android:textSize="@dimen/fond_14sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dip_1"
+                android:layout_marginLeft="@dimen/dip_1"
+                android:layout_marginTop="@dimen/dip_1"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="已击败考生" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="60%" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dip_1"
+                android:layout_marginLeft="@dimen/dip_1"
+                android:layout_marginTop="@dimen/dip_1"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="全站平均分" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="53分" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dip_1"
+                android:layout_marginLeft="@dimen/dip_1"
+                android:layout_marginTop="@dimen/dip_1"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="正确率" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="69%" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dip_10"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:orientation="vertical">
+            <TextView
+                android:padding="@dimen/dip_10"
+                android:background="@color/white"
+                android:text="答题卡"
+                android:drawableLeft="@mipmap/icon_datika"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <GridView
+                android:id="@+id/TestResult_Gridiview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:numColumns="6" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dip_5"
+                    android:background="@drawable/tv_bodr3"
+                    android:paddingLeft="@dimen/dip_10"
+                    android:paddingRight="@dimen/dip_10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="错题" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dip_5"
+                    android:background="@drawable/tv_bodr4"
+                    android:paddingLeft="@dimen/dip_10"
+                    android:paddingRight="@dimen/dip_10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="答对" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dip_5"
+                    android:paddingLeft="@dimen/dip_10"
+                    android:paddingRight="@dimen/dip_10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="未答" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dip_5"
+                    android:background="@drawable/tv_bodr2"
+                    android:paddingLeft="@dimen/dip_10"
+                    android:paddingRight="@dimen/dip_10" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="当前题" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#539ef9"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/dip_10"
+                android:text="重新开始"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fond_16sp" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#fb1b1b"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/dip_10"
+                android:text="重新开始"
+                android:textColor="@color/white"
+                android:textSize="@dimen/fond_16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

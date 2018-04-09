@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dip_60"
+        android:layout_marginRight="@dimen/dip_60"
+        android:layout_marginTop="@dimen/dip_10"
+        android:background="@drawable/sex_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/sex_top"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/dip_10"
+            android:paddingTop="@dimen/dip_20"
+            android:text="选择性别"
+            android:textColor="#999999"
+            android:textSize="@dimen/fond_18sp" />
+
+        <RelativeLayout
+            android:id="@+id/sex_female"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/dip_20"
+            android:paddingTop="@dimen/dip_20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:drawableLeft="@mipmap/icon_female"
+                android:drawablePadding="@dimen/dip_10"
+                android:gravity="center_vertical"
+                android:text="女"
+                android:textSize="@dimen/fond_18sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/sex_male"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dip_1"
+            android:background="@drawable/sex_buttom"
+            android:paddingBottom="@dimen/dip_20"
+            android:paddingTop="@dimen/dip_20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:drawableLeft="@mipmap/icon_male"
+                android:drawablePadding="@dimen/dip_10"
+                android:gravity="center_vertical"
+                android:text="男"
+                android:textSize="@dimen/fond_18sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

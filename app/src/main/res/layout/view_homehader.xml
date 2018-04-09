@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <com.youth.banner.Banner
+        android:id="@+id/home_banner"
+        android:layout_width="match_parent"
+        android:layout_height="240dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/dip_5"
+        android:paddingLeft="@dimen/dip_10"
+        android:paddingTop="@dimen/dip_5">
+        <com.sunfusheng.marqueeview.MarqueeView
+            android:id="@+id/homeHader_title"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:mvAnimDuration="1000"
+            app:mvDirection="top_to_bottom"
+            app:mvInterval="3000"
+            app:mvTextColor="#000000"
+            app:mvTextSize="12sp"
+            app:mvSingleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dip_10"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/dip_10">
+
+        <TextView
+            android:id="@+id/home_lainxi"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/dip_5"
+            android:drawableTop="@mipmap/icon_write1"
+            android:gravity="center_horizontal"
+            android:text="章节练习"
+            android:textSize="@dimen/fond_14sp" />
+
+        <TextView
+            android:id="@+id/home_kaoshi"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/dip_5"
+            android:drawableTop="@mipmap/icon_kaoshi"
+            android:gravity="center_horizontal"
+            android:text="模拟考试" />
+
+        <TextView
+            android:id="@+id/home_zhenti"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/dip_5"
+            android:drawableTop="@mipmap/icon_zhenti"
+            android:gravity="center_horizontal"
+            android:text="历年真题" />
+
+        <TextView
+            android:id="@+id/home_cuoti"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/dip_5"
+            android:drawableTop="@mipmap/icon_cuoti"
+            android:gravity="center_horizontal"
+            android:text="错题练习" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dip_10"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/icon_baoshi"
+            android:drawablePadding="@dimen/dip_5"
+            android:padding="@dimen/dip_10"
+            android:text="精选考题"
+            android:textSize="@dimen/fond_14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/home_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="@dimen/dip_5"
+            android:drawableRight="@mipmap/icon_rightdown"
+            android:padding="@dimen/dip_10"
+            android:text="查看更多" />
+    </RelativeLayout>
+</LinearLayout>
