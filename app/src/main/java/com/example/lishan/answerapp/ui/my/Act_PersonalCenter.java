@@ -2,13 +2,18 @@ package com.example.lishan.answerapp.ui.my;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -17,13 +22,16 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
+import com.bumptech.glide.Glide;
 import com.example.lishan.answerapp.R;
 import com.example.lishan.answerapp.bean.JsonBean;
+import com.example.lishan.answerapp.bean.PersonalCenterBean;
 import com.example.lishan.answerapp.bean.SexBean;
 import com.example.lishan.answerapp.common.BaseAct;
 import com.example.lishan.answerapp.common.GetJsonDataUtil;
@@ -36,12 +44,15 @@ import com.google.gson.Gson;
 import com.lykj.aextreme.afinal.utils.ACache;
 import com.lykj.aextreme.afinal.utils.Debug;
 import com.lykj.aextreme.afinal.utils.MyToast;
+import com.lykj.aextreme.afinal.view.CircleImageView;
+import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
 import org.json.JSONArray;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,6 +60,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import static android.media.MediaRecorder.VideoSource.CAMERA;
+import static android.provider.MediaStore.Video.Thumbnails.EXTERNAL_CONTENT_URI;
 
 /**
  * 个人中心
@@ -67,6 +79,7 @@ public class Act_PersonalCenter extends BaseAct implements SexDialog.OnBackSex, 
     private Thread thread;
     private int stats;
     Dlg_PhotoAlbum photo;
+    private CircleImageView imageView;
 
     @Override
     public int initLayoutId() {
@@ -88,6 +101,11 @@ public class Act_PersonalCenter extends BaseAct implements SexDialog.OnBackSex, 
         addr = getView(R.id.personalcenter_addr);
         jianjie = getView(R.id.personalcenter_jianjie);
         photo = new Dlg_PhotoAlbum(this, this);
+        imageView = getView(R.id.PersonalCenterprofile_image);
+        aCache = ACache.get(context);
+        Glide.with(context)
+                .load(aCache.getAsString("icon"))
+                .into(imageView);
     }
 
     @Override
@@ -228,7 +246,6 @@ public class Act_PersonalCenter extends BaseAct implements SexDialog.OnBackSex, 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Debug.e("----requestCode---" + requestCode + "=---resultCode---" + resultCode);
         // 如果请求码为 sendUser 返回码 为 RESULT_OK RESULT_OK为系统自定义的int值为 -1
         if (requestCode == 100 && resultCode == RESULT_OK) {
             // 在TextView中设置返回信息
@@ -245,12 +262,8 @@ public class Act_PersonalCenter extends BaseAct implements SexDialog.OnBackSex, 
             c.close();
             url = imagePath;
             postFile();
-        } else if (requestCode == 55 && resultCode == Activity.RESULT_OK) {
-
-            File picture = new File(getSDPath() + "/img.jpg");
-            Uri uri = FileProvider.getUriForFile(this, "包名.fileprovider", picture);
-            url = picture.getPath();
-            Debug.e(uri);
+        } else if (requestCode == 55 && resultCode == Activity.RESULT_OK) {//拍照
+            url = mOutPutFileUri.getPath();
             postFile();
         }
     }
@@ -362,20 +375,10 @@ public class Act_PersonalCenter extends BaseAct implements SexDialog.OnBackSex, 
 
     }
 
-    private File mFile;
     @Override
     public void carmer() {
         photo.dismiss();
-        mFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/test/jd_id_origin_pictrue.jpg");
-        File file = new File(getSDPath(), "img.jpg");
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                    FileProvider.getUriForFile(this, "包名.fileprovider", file));
-        } else {
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-        }
-        startActivityForResult(intent, 55);
+        applyWritePermission();
     }
 
     @Override
@@ -392,11 +395,18 @@ public class Act_PersonalCenter extends BaseAct implements SexDialog.OnBackSex, 
         HashMap<String, String> body = new HashMap<>();
         body.put("phone", aCache.getAsString("phone"));
         body.put("token", aCache.getAsString("token"));
-        Debug.e("==token===" + aCache.getAsString("token"));
         httpReqest.HttpPostFils("/user/icon_upload/", body, new BackString() {
             @Override
             public void onSuccess(Response<String> response) {
                 Debug.e("==onSuccess===" + response.body());
+                if (response.body() != null) {
+                    Gson gson = new Gson();
+                    PersonalCenterBean ben = gson.fromJson(response.body(), PersonalCenterBean.class);
+                    aCache.put("icon", ben.getData().getIcon());
+                    Glide.with(context)
+                            .load(aCache.getAsString("icon"))
+                            .into(imageView);
+                }
             }
 
             @Override
@@ -406,14 +416,38 @@ public class Act_PersonalCenter extends BaseAct implements SexDialog.OnBackSex, 
         }, "img_upload", url);
 
     }
-    public String getSDPath(){
-        File sdDir = null;
-        boolean sdCardExist = Environment.getExternalStorageState()
-                .equals(android.os.Environment.MEDIA_MOUNTED);//判断sd卡是否存在
-        if(sdCardExist)
-        {
-            sdDir = Environment.getExternalStorageDirectory();//获取跟目录
+
+    /**
+     * 使用相机
+     */
+    private Uri mOutPutFileUri;
+
+    private void useCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/aaaa";
+        File path1 = new File(path);
+        if (!path1.exists()) {
+            path1.mkdirs();
         }
-        return sdDir.toString();
+        File file = new File(path1, System.currentTimeMillis() + ".jpg");
+        mOutPutFileUri = Uri.fromFile(file);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, mOutPutFileUri);
+        startActivityForResult(intent, 55);
+    }
+
+    public void applyWritePermission() {
+        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (Build.VERSION.SDK_INT >= 23) {
+            int check = ContextCompat.checkSelfPermission(this, permissions[0]);
+            // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
+            if (check == PackageManager.PERMISSION_GRANTED) {
+                //调用相机
+                useCamera();
+            } else {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+        } else {
+            useCamera();
+        }
     }
 }

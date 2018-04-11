@@ -14,6 +14,7 @@ import com.example.lishan.answerapp.common.BaseFgt;
 import com.example.lishan.answerapp.common.GlideImageLoader;
 import com.example.lishan.answerapp.httppost.BackString;
 import com.example.lishan.answerapp.httppost.HttpReqest;
+import com.example.lishan.answerapp.ui.examination.Act_MultiplayerExamination;
 import com.example.lishan.answerapp.ui.hom.Act_Chapter;
 import com.example.lishan.answerapp.ui.hom.Act_Error;
 import com.example.lishan.answerapp.ui.hom.Act_RankingList;
@@ -70,7 +71,6 @@ public class Fgt_Home extends BaseFgt implements XRecyclerView.LoadingListener, 
     @Override
     public void initView() {
         hideHeader();
-
         mRecyclerView = getView(R.id.home_recyclerview);
         myHomeBanner = getView(R.id.home_banner);
         setOnClickListener(R.id.home_down);
@@ -143,17 +143,20 @@ public class Fgt_Home extends BaseFgt implements XRecyclerView.LoadingListener, 
 
     }
 
+    Intent intent = new Intent();
+
     @Override
     public void onViewClick(View v) {
+        intent.putExtra("tiaojian", tiaojian);
         switch (v.getId()) {
             case R.id.home_lainxi://练节练习
-                startAct(Act_Chapter.class);
+                startAct(intent, Act_Chapter.class);
                 break;
             case R.id.home_kaoshi://模拟考试
-                startAct(Act_SimulationTest.class);
+                startAct(intent, Act_SimulationTest.class);
                 break;
             case R.id.home_zhenti://历年真题
-                startAct(Act_Topic.class);
+                startAct(intent, Act_Topic.class);
                 break;
             case R.id.home_cuoti://错题练习
                 startAct(Act_Error.class);
@@ -249,6 +252,16 @@ public class Fgt_Home extends BaseFgt implements XRecyclerView.LoadingListener, 
             datas.get(position).setDerail(true);
         }
         myAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void OnChildrenBackItem(int position, int childrenPosition) {
+//        Intent intent = new Intent();
+//        intent.putExtra("position", position);
+//        intent.putExtra("childrenPosition", childrenPosition);
+//        intent.putExtra("data", bean);
+//        startAct(intent, Act_MultiplayerExamination.class);
+
     }
 
     @Override

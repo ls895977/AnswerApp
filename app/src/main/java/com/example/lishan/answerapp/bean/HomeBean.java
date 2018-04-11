@@ -1,12 +1,13 @@
 package com.example.lishan.answerapp.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by lishan on 2018/2/2.
  */
 
-public class HomeBean  {
+public class HomeBean implements Serializable {
     private String name;
     /**
      * messgae : 成功刷新数据！
@@ -60,7 +61,7 @@ public class HomeBean  {
         this.error = error;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * unit : [{"unit":"2017年注册安全工程师考试-16","section":[{"section_man":"200","section":"第1章"},{"section_man":"200","section":"第2章"},{"section_man":"200","section":"第3章"},{"section_man":"200","section":"第4章"},{"section_man":"200","section":"第5章"}],"unit_man":"2000"},{"unit":"2017年注册安全工程师考试-11","section":[{"section_man":"201","section":"第1章"},{"section_man":"200","section":"第2章"},{"section_man":"200","section":"第3章"},{"section_man":"200","section":"第4章"},{"section_man":"200","section":"第5章"}],"unit_man":"2001"},{"unit":"2017年注册安全工程师考试-13","section":[{"section_man":"200","section":"第1章"},{"section_man":"200","section":"第2章"},{"section_man":"200","section":"第3章"},{"section_man":"200","section":"第4章"},{"section_man":"200","section":"第5章"}],"unit_man":"2000"},{"unit":"2017年注册安全工程师考试-18","section":[{"section_man":"200","section":"第1章"},{"section_man":"200","section":"第2章"},{"section_man":"200","section":"第3章"},{"section_man":"200","section":"第4章"},{"section_man":"200","section":"第5章"}],"unit_man":"2000"},{"unit":"2017年注册安全工程师考试-20","section":[{"section_man":"200","section":"第1章"},{"section_man":"200","section":"第2章"},{"section_man":"200","section":"第3章"},{"section_man":"200","section":"第4章"},{"section_man":"200","section":"第5章"}],"unit_man":"2000"},{"unit":"2017年注册安全工程师考试-14","section":[{"section_man":"200","section":"第1章"},{"section_man":"200","section":"第2章"},{"section_man":"200","section":"第3章"},{"section_man":"200","section":"第4章"},{"section_man":"200","section":"第5章"}],"unit_man":"2000"},{"unit":"2017年注册安全工程师考试-19","section":[{"section_man":"200","section":"第1章"},{"section_man":"200","section":"第2章"},{"section_man":"200","section":"第3章"},{"section_man":"200","section":"第4章"},{"section_man":"200","section":"第5章"}],"unit_man":"2000"},{"unit":"2017年注册安全工程师考试-15","section":[{"section_man":"200","section":"第1章"},{"section_man":"200","section":"第2章"},{"section_man":"200","section":"第3章"},{"section_man":"200","section":"第4章"},{"section_man":"200","section":"第5章"}],"unit_man":"2000"},{"unit":"2017年注册安全工程师考试-17","section":[{"section_man":"200","section":"第1章"},{"section_man":"200","section":"第2章"},{"section_man":"200","section":"第3章"},{"section_man":"200","section":"第4章"},{"section_man":"200","section":"第5章"}],"unit_man":"2000"},{"unit":"2017年注册安全工程师考试-12","section":[{"section_man":"200","section":"第1章"},{"section_man":"200","section":"第2章"},{"section_man":"200","section":"第3章"},{"section_man":"200","section":"第4章"},{"section_man":"200","section":"第5章"}],"unit_man":"2000"}]
          * group_type : 精选考题
@@ -95,7 +96,7 @@ public class HomeBean  {
             this.unit = unit;
         }
 
-        public static class UnitBean {
+        public static class UnitBean implements Serializable{
             /**
              * unit : 2017年注册安全工程师考试-16
              * section : [{"section_man":"200","section":"第1章"},{"section_man":"200","section":"第2章"},{"section_man":"200","section":"第3章"},{"section_man":"200","section":"第4章"},{"section_man":"200","section":"第5章"}]
@@ -140,7 +141,7 @@ public class HomeBean  {
                 this.section = section;
             }
 
-            public static class SectionBean {
+            public static class SectionBean implements Serializable {
                 /**
                  * section_man : 200
                  * section : 第1章

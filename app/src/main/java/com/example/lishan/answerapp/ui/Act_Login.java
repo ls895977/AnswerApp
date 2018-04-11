@@ -145,7 +145,8 @@ public class Act_Login extends BaseAct implements BackString {
         HttpReqest httpReqest = new HttpReqest();
         Map<String, String> map = new HashMap<>();
         map.put("phone", phone.getText().toString());
-        map.put("password", pwd.getText().toString());
+        map.put("password", String.valueOf(pwd.getText().toString()));
+        aCache.put("password", String.valueOf(pwd.getText().toString()));
         httpReqest.HttpPost("/user/login/", map, this);
     }
 }

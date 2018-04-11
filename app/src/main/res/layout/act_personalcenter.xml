@@ -46,7 +46,7 @@
     android:textSize="@dimen/fond_16sp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-    android:id="@+id/profile_image"
+    android:id="@+id/PersonalCenterprofile_image"
     android:layout_width="@dimen/dip_40"
     android:layout_height="@dimen/dip_40"
     android:layout_alignParentRight="true"
@@ -182,10 +182,13 @@
     <TextView
     android:id="@+id/personalcenter_jianjie"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/dip_10"
     android:background="#f0f0f0" />
-
+    <ImageView
+        android:layout_width="@dimen/dip_80"
+        android:id="@+id/person_img"
+        android:layout_height="@dimen/dip_80" />
     </LinearLayout>
 
 </LinearLayout>

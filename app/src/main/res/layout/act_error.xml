@@ -25,8 +25,8 @@
             android:textColor="@color/white"
             android:textSize="@dimen/fond_16sp" />
     </RelativeLayout>
-    <android.support.v7.widget.RecyclerView
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/error_myRecyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"></com.jcodecraeer.xrecyclerview.XRecyclerView>
 </LinearLayout>

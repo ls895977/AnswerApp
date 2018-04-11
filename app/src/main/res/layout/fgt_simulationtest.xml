@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_subject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dip_10"
+            android:text="与计算静态投资回收期无关的变量是(         )" />
+
+        <ImageView
+            android:id="@+id/item_Answerimg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/silin1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dip_10">
+
+                <TextView
+                    android:id="@+id/rb_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rdselecte"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="A"
+                    android:textColor="@drawable/tv_coloer" />
+
+                <TextView
+                    android:id="@+id/item_Answer1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dip_10"
+                    android:text="基准收益率" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/silin2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dip_10">
+
+                <TextView
+                    android:id="@+id/rb_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rdselecte"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="B"
+                    android:textColor="@drawable/tv_coloer" />
+
+                <TextView
+                    android:id="@+id/item_Answer2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dip_10"
+                    android:text="基准收益率" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/silin3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dip_10">
+
+                <TextView
+                    android:id="@+id/rb_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rdselecte"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="C"
+                    android:textColor="@drawable/tv_coloer" />
+
+                <TextView
+                    android:id="@+id/item_Answer3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dip_10"
+                    android:text="基准收益率" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/silin4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dip_10">
+
+                <TextView
+                    android:id="@+id/rb_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rdselecte"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="D"
+                    android:textColor="@drawable/tv_coloer" />
+
+                <TextView
+                    android:id="@+id/item_Answer4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dip_10"
+                    android:text="基准收益率" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/silin5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dip_10">
+                <TextView
+                    android:id="@+id/rb_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rdselecte"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="E"
+                    android:textColor="@drawable/tv_coloer" />
+
+                <TextView
+                    android:id="@+id/item_Answer5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dip_10"
+                    android:text="基准收益率" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/silin6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dip_10">
+
+                <TextView
+                    android:id="@+id/rb_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rdselecte"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="F"
+                    android:textColor="@drawable/tv_coloer" />
+
+                <TextView
+                    android:id="@+id/item_Answer6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dip_10"
+                    android:text="基准收益率" />
+            </LinearLayout>
+        </RadioGroup>
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:background="@color/app_color"-->
+        <!--android:paddingBottom="@dimen/dip_5"-->
+        <!--android:paddingTop="@dimen/dip_5">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/simulationtest1_datika"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/dip_20"-->
+        <!--android:drawablePadding="@dimen/dip_5"-->
+        <!--android:drawableTop="@mipmap/icon_datika"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:text="答题卡"-->
+        <!--android:textColor="#ffffef" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/simulationtest1_tijiao"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:drawablePadding="@dimen/dip_5"-->
+        <!--android:drawableTop="@mipmap/icon_tijiao"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:text="提交"-->
+        <!--android:textColor="#ffffef" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/simulationtest1_jiucuo"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginRight="@dimen/dip_20"-->
+        <!--android:drawablePadding="@dimen/dip_5"-->
+        <!--android:drawableTop="@mipmap/icon_jiucuo"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:text="纠错"-->
+        <!--android:textColor="#ffffef" />-->
+        <!--</RelativeLayout>-->
+    </LinearLayout>
+</ScrollView>

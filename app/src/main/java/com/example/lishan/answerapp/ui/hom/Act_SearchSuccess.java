@@ -146,4 +146,9 @@ public class Act_SearchSuccess extends BaseAct implements BackString, HomeAdapte
         }
         myAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void OnChildrenBackItem(int position, int childrenPosition) {
+
+    }
 }

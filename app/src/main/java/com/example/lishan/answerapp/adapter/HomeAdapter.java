@@ -10,11 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.lishan.answerapp.R;
-import com.example.lishan.answerapp.bean.ErrorBean;
 import com.example.lishan.answerapp.bean.HomeBean;
-import com.example.lishan.answerapp.bean.InformationBean;
 import com.example.lishan.answerapp.view.FullyLinearLayoutManager;
-import com.lykj.aextreme.afinal.utils.Debug;
 
 import java.util.List;
 
@@ -53,6 +50,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
         return viewHolder;
     }
 
+    ChapterChlidAdapter adapter;
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final HomeBean.DataBean.UnitBean bean = datas.get(position);
@@ -62,10 +61,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
             holder.myRecyclerView.setVisibility(View.VISIBLE);
             holder.myImage.setImageResource(R.mipmap.icon_jian);
             if (bean.getSection().size() > 0) {
-                ChapterChlidAdapter adapter = new ChapterChlidAdapter();
+                adapter = new ChapterChlidAdapter();
                 adapter.setContext(getContext());
                 adapter.setDatas(bean.getSection());
                 holder.myRecyclerView.setAdapter(adapter);
+                adapter.setOnBack(new ChapterChlidAdapter.OnBack() {
+                    @Override
+                    public void OnItemChlid(int childrenPosition) {
+                        onBack.OnChildrenBackItem(position, childrenPosition);
+                    }
+                });
                 FullyLinearLayoutManager manager = new FullyLinearLayoutManager(context);
                 holder.myRecyclerView.setLayoutManager(manager);
             }
@@ -73,15 +78,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
             holder.myRecyclerView.setVisibility(View.GONE);
             holder.myImage.setImageResource(R.mipmap.icon_add);
         }
-
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBack.OnBack(bean.isDerail(), position);
             }
         });
-
-
     }
 
     @Override
@@ -107,5 +109,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> 
 
     public interface onItemBack {
         void OnBack(boolean item, int position);
+
+        void OnChildrenBackItem(int position, int childrenPosition);
+
     }
 }

@@ -7,9 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lishan.answerapp.R;
-import com.example.lishan.answerapp.bean.ErrorBean;
-import com.example.lishan.answerapp.bean.ErrorChlid;
-import com.example.lishan.answerapp.bean.HomeBean;
 
 import java.util.List;
 
@@ -18,28 +15,28 @@ import java.util.List;
  */
 
 public class ErrorChlidAdapter extends RecyclerView.Adapter<ErrorChlidAdapter.MyViewHolder> {
-    private Context context;
-    private List<ErrorChlid> datas;
-
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
-    public List<ErrorChlid> getDatas() {
-        return datas;
-    }
-
-    public void setDatas(List<ErrorChlid> datas) {
-        this.datas = datas;
-    }
+//    private Context context;
+//    private List<ErrorChlid> datas;
+//
+//    public Context getContext() {
+//        return context;
+//    }
+//
+//    public void setContext(Context context) {
+//        this.context = context;
+//    }
+//
+//    public List<ErrorChlid> getDatas() {
+//        return datas;
+//    }
+//
+//    public void setDatas(List<ErrorChlid> datas) {
+//        this.datas = datas;
+//    }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MyViewHolder viewHolder = new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_errorchlid, parent, false));
+        MyViewHolder viewHolder = new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_errorchlid, parent, false));
         return viewHolder;
     }
 
@@ -49,7 +46,7 @@ public class ErrorChlidAdapter extends RecyclerView.Adapter<ErrorChlidAdapter.My
 
     @Override
     public int getItemCount() {
-        return datas.size();
+        return 0;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

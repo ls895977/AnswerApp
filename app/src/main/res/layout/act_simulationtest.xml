@@ -27,9 +27,9 @@
             android:textColor="@color/white"
             android:textSize="@dimen/fond_16sp" />
     </RelativeLayout>
-    <android.support.v7.widget.RecyclerView
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/simulationtest_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dip_2"></android.support.v7.widget.RecyclerView>
+        android:layout_marginTop="@dimen/dip_2"></com.jcodecraeer.xrecyclerview.XRecyclerView>
 </LinearLayout>
