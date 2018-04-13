@@ -11,7 +11,7 @@
         android:layout_centerVertical="true"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:padding="@dimen/dip_50"></RelativeLayout>
+        android:padding="@dimen/dip_40"></RelativeLayout>
 
     <TextView
         android:id="@+id/id_tv_title"
@@ -20,5 +20,5 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="12"
-        android:textSize="@dimen/fond_18sp" />
+        android:textSize="@dimen/fond_16sp" />
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.lishan.answerapp.ui.hom;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.TextView;
@@ -95,7 +96,13 @@ public class Act_Chapter extends BaseAct implements BackString, HomeAdapter.onIt
 
     @Override
     public void OnChildrenBackItem(int position, int childrenPosition) {
-
+        Intent intent = new Intent();
+        intent.putExtra("position", position);
+        intent.putExtra("childrenPosition", childrenPosition);
+        intent.putExtra("data", bean);
+        intent.putExtra("unit", datas.get(position).getUnit());
+        intent.putExtra("section", datas.get(position).getSection().get(childrenPosition).getSection());
+        startAct(intent, Act_MultiplayerExamination.class);
     }
 
     public void postData() {
@@ -114,22 +121,22 @@ public class Act_Chapter extends BaseAct implements BackString, HomeAdapter.onIt
     public void onSuccess(Response<String> response) {
         Debug.e(response.body());
         bean = gson.fromJson(response.body(), HomeBean.class);
-            if (datas.size() == 0) {
-                setData(bean);
-                myAdapter = new HomeAdapter(this);
-                myAdapter.setDatas(datas);
-                myAdapter.setContext(context);
-                mRecyclerView.setAdapter(myAdapter);
-                mRecyclerView.refreshComplete();
+        if (datas.size() == 0) {
+            setData(bean);
+            myAdapter = new HomeAdapter(this);
+            myAdapter.setDatas(datas);
+            myAdapter.setContext(context);
+            mRecyclerView.setAdapter(myAdapter);
+            mRecyclerView.refreshComplete();
+        } else {
+            setData(bean);
+            if (bean.getData().getUnit().size() > 0) {
+                mRecyclerView.loadMoreComplete();
+                myAdapter.notifyDataSetChanged();
             } else {
-                setData(bean);
-                if (bean.getData().getUnit().size() > 0) {
-                    mRecyclerView.loadMoreComplete();
-                    myAdapter.notifyDataSetChanged();
-                } else {
-                    myAdapter.notifyDataSetChanged();
-                    mRecyclerView.setNoMore(true);
-                }
+                myAdapter.notifyDataSetChanged();
+                mRecyclerView.setNoMore(true);
+            }
         }
         showCView();
 
@@ -139,6 +146,8 @@ public class Act_Chapter extends BaseAct implements BackString, HomeAdapter.onIt
     public void onError(Response<String> response) {
         showCView();
     }
+
+    int childrenPosition1 = 0;
 
     @Override
     public void OnBackpopupItem(int position) {

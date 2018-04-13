@@ -9,17 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dip_60"
         android:background="@color/app_color">
-
-        <ImageView
-            android:id="@+id/personalcenter_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:padding="@dimen/dip_10"
-            android:paddingBottom="@dimen/dip_10"
-            android:src="@mipmap/icon_search" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

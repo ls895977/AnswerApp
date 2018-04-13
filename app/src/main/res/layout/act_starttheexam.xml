@@ -14,7 +14,7 @@
             android:background="@color/app_color">
 
             <ImageView
-                android:id="@+id/SimulationTest_back"
+                android:id="@+id/StartTheExam_back1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -23,7 +23,7 @@
                 android:src="@mipmap/icon_back" />
 
             <TextView
-                android:id="@+id/simulationtest1_status"
+                android:id="@+id/StartTheExam_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -34,25 +34,23 @@
                 android:textSize="@dimen/fond_16sp" />
 
             <TextView
-                android:id="@+id/simulationtest1_sumit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/StartTheExam_Collec"
+                android:layout_width="@dimen/dip_25"
+                android:layout_height="@dimen/dip_25"
                 android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/dip_5"
                 android:layout_alignParentRight="true"
-                android:paddingBottom="@dimen/dip_10"
-                android:paddingRight="@dimen/dip_20"
-                android:text="提交"
-                android:textColor="@color/white"
-                android:textSize="@dimen/fond_16sp" />
+                android:background="@drawable/cbselector"
+                android:paddingRight="@dimen/dip_40" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dip_10">
-
+            android:paddingTop="@dimen/dip_10"
+            android:paddingLeft="@dimen/dip_10">
             <TextView
-                android:id="@+id/simulationtest1_ti"
+                android:id="@+id/StartTheExam_ti"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -60,31 +58,8 @@
                 android:drawablePadding="@dimen/dip_5"
                 android:text=""
                 android:textSize="@dimen/fond_18sp" />
-
-            <LinearLayout
-                android:id="@+id/li_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:background="#539ef9"
-                android:paddingBottom="@dimen/dip_10"
-                android:paddingLeft="@dimen/dip_20"
-                android:paddingRight="@dimen/dip_20"
-                android:paddingTop="@dimen/dip_10">
-
-                <TextView
-                    android:id="@+id/simulationtest1_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="@dimen/dip_5"
-                    android:drawableRight="@mipmap/icon_danxuanstop"
-                    android:text="01：59：13"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-
             <TextView
-                android:id="@+id/simulationtest1_num"
+                android:id="@+id/StartTheExam_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -94,14 +69,14 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/simulationtest1_timu"
+            android:id="@+id/StartTheExam_timu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
             android:paddingLeft="@dimen/dip_10"
             android:text="题目：" />
-
         <android.support.v4.view.ViewPager
-            android:id="@+id/simulationtest1_vp"
+            android:id="@+id/StartTheExam_vp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></android.support.v4.view.ViewPager>
     </LinearLayout>

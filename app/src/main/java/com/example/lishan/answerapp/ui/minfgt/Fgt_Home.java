@@ -14,7 +14,7 @@ import com.example.lishan.answerapp.common.BaseFgt;
 import com.example.lishan.answerapp.common.GlideImageLoader;
 import com.example.lishan.answerapp.httppost.BackString;
 import com.example.lishan.answerapp.httppost.HttpReqest;
-import com.example.lishan.answerapp.ui.examination.Act_MultiplayerExamination;
+import com.example.lishan.answerapp.ui.hom.Act_MultiplayerExamination;
 import com.example.lishan.answerapp.ui.hom.Act_Chapter;
 import com.example.lishan.answerapp.ui.hom.Act_Error;
 import com.example.lishan.answerapp.ui.hom.Act_RankingList;
@@ -26,7 +26,6 @@ import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.lykj.aextreme.afinal.utils.ACache;
-import com.lykj.aextreme.afinal.utils.Debug;
 import com.lzy.okgo.model.Response;
 import com.sunfusheng.marqueeview.MarqueeView;
 import com.youth.banner.Banner;
@@ -256,11 +255,13 @@ public class Fgt_Home extends BaseFgt implements XRecyclerView.LoadingListener, 
 
     @Override
     public void OnChildrenBackItem(int position, int childrenPosition) {
-//        Intent intent = new Intent();
-//        intent.putExtra("position", position);
-//        intent.putExtra("childrenPosition", childrenPosition);
-//        intent.putExtra("data", bean);
-//        startAct(intent, Act_MultiplayerExamination.class);
+        Intent intent = new Intent();
+        intent.putExtra("position", position);
+        intent.putExtra("childrenPosition", childrenPosition);
+        intent.putExtra("data", bean);
+        intent.putExtra("unit",datas.get(position).getUnit());
+        intent.putExtra("section",datas.get(position).getSection().get(childrenPosition).getSection());
+        startAct(intent, Act_MultiplayerExamination.class);
 
     }
 

@@ -52,8 +52,8 @@ public class SearchSuccessAdapter extends RecyclerView.Adapter<SearchSuccessAdap
     }
 
     @Override
-    public void onBindViewHolder(SearchSuccessAdapter.MyViewHolder holder, final int position) {
-        final SearchSuccessBean.DataBean bean = datas.get(position);
+    public void onBindViewHolder(SearchSuccessAdapter.MyViewHolder holder, final int position1) {
+        final SearchSuccessBean.DataBean bean = datas.get(position1);
         holder.title.setText(bean.getUnit());
         holder.renshu.setText(bean.getUnit_man() + "人回答过");
         if (bean.isIskaiguan()) {//开
@@ -61,7 +61,12 @@ public class SearchSuccessAdapter extends RecyclerView.Adapter<SearchSuccessAdap
             holder.myImage.setImageResource(R.mipmap.icon_jian);
             if (bean.getSection().size() > 0) {
                 SearchsuccessChlidAdapter adapter = new SearchsuccessChlidAdapter();
-                adapter.setContext(getContext());
+                adapter.setContext(getContext(),new SearchsuccessChlidAdapter.OnBackChlic(){
+                    @Override
+                    public void onBackChlid(int position) {
+                        onBack.OnChildrenBackItem(position1,position);
+                    }
+                });
                 adapter.setDatas(bean.getSection());
                 holder.myRecyclerView.setAdapter(adapter);
                 FullyLinearLayoutManager manager = new FullyLinearLayoutManager(context);
@@ -75,7 +80,7 @@ public class SearchSuccessAdapter extends RecyclerView.Adapter<SearchSuccessAdap
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBack.OnBack(bean.isIskaiguan(), position);
+                onBack.OnBack(bean.isIskaiguan(), position1);
             }
         });
 
@@ -105,5 +110,7 @@ public class SearchSuccessAdapter extends RecyclerView.Adapter<SearchSuccessAdap
 
     public interface onItemBack {
         void OnBack(boolean item, int position);
+
+        void OnChildrenBackItem(int position, int childrenPosition);
     }
 }

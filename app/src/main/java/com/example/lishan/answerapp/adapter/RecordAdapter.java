@@ -18,17 +18,18 @@ import java.util.List;
 /**
  * Created by lishan on 2018/1/27.
  */
-
 public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHolder> {
     private Context context;
+    public OnBackItem onBackItem;
     private List<RecordBean.DataBean> datas;
 
     public Context getContext() {
         return context;
     }
 
-    public void setContext(Context context) {
+    public void setContext(Context context, OnBackItem onBackItem1) {
         this.context = context;
+        this.onBackItem = onBackItem1;
     }
 
     public List<RecordBean.DataBean> getDatas() {
@@ -46,11 +47,17 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         RecordBean.DataBean item = datas.get(position);
         holder.fenshu.setText(item.getUser_score());
         holder.myTextView.setText(item.getUnit());
-        holder.max.setText("/"+item.getUnit_full());
+        holder.max.setText("/" + item.getUnit_full());
+        holder.itemLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackItem.OnItemBack(position);
+            }
+        });
     }
 
     @Override
@@ -60,7 +67,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView myTextView, fenshu, max;
-        private LinearLayout myLinear;
+        private LinearLayout myLinear, itemLinear;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -68,6 +75,12 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
             myLinear = itemView.findViewById(R.id.item_ll_record);
             fenshu = itemView.findViewById(R.id.record_fsu);
             max = itemView.findViewById(R.id.record_max);
+            itemLinear = itemView.findViewById(R.id.item_record);
         }
     }
+
+  public   interface OnBackItem {
+        void OnItemBack(int position);
+    }
+
 }

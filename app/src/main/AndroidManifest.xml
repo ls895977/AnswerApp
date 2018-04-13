@@ -53,11 +53,12 @@
         <activity android:name=".ui.hom.Act_Error" />
         <activity android:name=".ui.hom.Act_Chapter" />
         <activity android:name=".ui.hom.Act_RankingList" />
-        <activity android:name=".ui.examination.Act_MultiplayerExamination" />
+        <activity android:name=".ui.hom.Act_MultiplayerExamination" />
         <activity android:name=".ui.examination.Act_SimulationTest" />
         <activity android:name=".ui.examination.Act_AnswerCard" />
         <activity android:name=".ui.examination.Act_TestResult" />
         <activity android:name=".ui.hom.Act_SearchSuccess"/>
+        <activity android:name=".ui.hom.Act_StartTheExam"/>
     </application>
 
 </manifest>

@@ -79,7 +79,7 @@ public class Act_PersonalCenter extends BaseAct implements SexDialog.OnBackSex, 
     private Thread thread;
     private int stats;
     Dlg_PhotoAlbum photo;
-    private CircleImageView imageView;
+    de.hdodenhof.circleimageview.CircleImageView myHaderImage;
 
     @Override
     public int initLayoutId() {
@@ -101,11 +101,11 @@ public class Act_PersonalCenter extends BaseAct implements SexDialog.OnBackSex, 
         addr = getView(R.id.personalcenter_addr);
         jianjie = getView(R.id.personalcenter_jianjie);
         photo = new Dlg_PhotoAlbum(this, this);
-        imageView = getView(R.id.PersonalCenterprofile_image);
         aCache = ACache.get(context);
+        myHaderImage = getView(R.id.PersonalCenterprofile_image11111);
         Glide.with(context)
                 .load(aCache.getAsString("icon"))
-                .into(imageView);
+                .into(myHaderImage);
     }
 
     @Override
@@ -405,7 +405,7 @@ public class Act_PersonalCenter extends BaseAct implements SexDialog.OnBackSex, 
                     aCache.put("icon", ben.getData().getIcon());
                     Glide.with(context)
                             .load(aCache.getAsString("icon"))
-                            .into(imageView);
+                            .into(myHaderImage);
                 }
             }
 

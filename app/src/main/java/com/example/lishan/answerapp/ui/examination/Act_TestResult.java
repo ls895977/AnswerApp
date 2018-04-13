@@ -29,32 +29,31 @@ public class Act_TestResult extends BaseAct {
         hideHeader();
         setOnClickListener(R.id.TestResult_back);
         myGridView = getView(R.id.TestResult_Gridiview);
-
+//        AnswerCardAdapter answerCardAdapter = new AnswerCardAdapter(this, mDatas);
+//        myGridView.setAdapter(answerCardAdapter);
     }
 
     List<AnswerCardBean> mDatas;
 
     @Override
     public void initData() {
-        mDatas = new ArrayList<>();
-        for (int i = 1; i < 19; i++) {
-            AnswerCardBean b1 = new AnswerCardBean();
-            b1.setIndext(i);
-            if (i == 1 || i == 7 || i == 21) {
-                b1.setZhuangtai(1);
-            } else if (i == 2 || i == 6 || i == 8 || i == 12 || i == 14 || i == 18) {
-                b1.setZhuangtai(2);
-            } else if (i == 5) {
-                b1.setZhuangtai(3);
-            } else {
-                b1.setZhuangtai(4);
-            }
-            mDatas.add(b1);
-        }
+//        mDatas = new ArrayList<>();
+//        for (int i = 1; i < 19; i++) {
+//            AnswerCardBean b1 = new AnswerCardBean();
+//            b1.setIndext(i);
+//            if (i == 1 || i == 7 || i == 21) {
+//                b1.setZhuangtai(1);
+//            } else if (i == 2 || i == 6 || i == 8 || i == 12 || i == 14 || i == 18) {
+//                b1.setZhuangtai(2);
+//            } else if (i == 5) {
+//                b1.setZhuangtai(3);
+//            } else {
+//                b1.setZhuangtai(4);
+//            }
+//            mDatas.add(b1);
+//        }
 
 
-        AnswerCardAdapter answerCardAdapter = new AnswerCardAdapter(this, mDatas);
-        myGridView.setAdapter(answerCardAdapter);
     }
 
     @Override

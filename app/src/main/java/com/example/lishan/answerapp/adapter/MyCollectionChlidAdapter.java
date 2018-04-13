@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.lishan.answerapp.R;
 import com.example.lishan.answerapp.bean.HomeBean;
-import com.example.lishan.answerapp.bean.SearchSuccessBean;
+import com.example.lishan.answerapp.bean.MyCollectionBean;
 
 import java.util.List;
 
@@ -18,26 +18,32 @@ import java.util.List;
  * Created by lishan on 2018/1/27.
  */
 
-public class SearchsuccessChlidAdapter extends RecyclerView.Adapter<SearchsuccessChlidAdapter.MyViewHolder> {
+public class MyCollectionChlidAdapter extends RecyclerView.Adapter<MyCollectionChlidAdapter.MyViewHolder> {
     private Context context;
-    private List<SearchSuccessBean.DataBean.SectionBean> datas;
-    private OnBackChlic onBackChlic;
+    private List<MyCollectionBean.DataBean.SectionBean> datas;
+    private OnBack onBack;
+
+    public OnBack getOnBack() {
+        return onBack;
+    }
+
+    public void setOnBack(OnBack onBack) {
+        this.onBack = onBack;
+    }
 
     public Context getContext() {
         return context;
     }
 
-    public void setContext(Context context, OnBackChlic onBackChlic1) {
-
+    public void setContext(Context context) {
         this.context = context;
-        this.onBackChlic = onBackChlic1;
     }
 
-    public List<SearchSuccessBean.DataBean.SectionBean> getDatas() {
+    public List<MyCollectionBean.DataBean.SectionBean> getDatas() {
         return datas;
     }
 
-    public void setDatas(List<SearchSuccessBean.DataBean.SectionBean> datas) {
+    public void setDatas(List<MyCollectionBean.DataBean.SectionBean> datas) {
         this.datas = datas;
     }
 
@@ -49,13 +55,13 @@ public class SearchsuccessChlidAdapter extends RecyclerView.Adapter<Searchsucces
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        SearchSuccessBean.DataBean.SectionBean bean = datas.get(position);
+        MyCollectionBean.DataBean.SectionBean bean = datas.get(position);
         holder.title.setText(bean.getSection());
         holder.num.setText(bean.getSection_man() + "人回答过");
-        holder.myLinear.setOnClickListener(new View.OnClickListener() {
+        holder.mychlidLinear.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                onBackChlic.onBackChlid(position);
+            public void onClick(View view) {
+                onBack.OnItemChlid(position);
             }
         });
     }
@@ -67,16 +73,17 @@ public class SearchsuccessChlidAdapter extends RecyclerView.Adapter<Searchsucces
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView title, num;
-        private LinearLayout myLinear;
+        private LinearLayout mychlidLinear;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.homechlid_title);
             num = itemView.findViewById(R.id.homechlid_num);
-            myLinear=itemView.findViewById(R.id.item_chapterchildItem);
+            mychlidLinear = itemView.findViewById(R.id.item_chapterchildItem);
         }
     }
 
-    public interface OnBackChlic {
-        void onBackChlid( int position);
+    interface OnBack {
+        void OnItemChlid(int childrenPosition);
     }
 }

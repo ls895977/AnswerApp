@@ -1,5 +1,6 @@
 package com.example.lishan.answerapp.ui.minfgt;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -11,6 +12,7 @@ import com.example.lishan.answerapp.bean.RecordBean;
 import com.example.lishan.answerapp.common.BaseFgt;
 import com.example.lishan.answerapp.httppost.BackString;
 import com.example.lishan.answerapp.httppost.HttpReqest;
+import com.example.lishan.answerapp.ui.examination.Act_AnswerCard;
 import com.example.lishan.answerapp.view.FullyLinearLayoutManager;
 import com.google.gson.Gson;
 import com.lykj.aextreme.afinal.utils.ACache;
@@ -26,7 +28,7 @@ import java.util.List;
  * Created by lishan on 2018/1/27.
  */
 
-public class Fgt_Record extends BaseFgt implements BackString {
+public class Fgt_Record extends BaseFgt implements BackString, RecordAdapter.OnBackItem {
     private RecyclerView myRecyclerView;
     private HttpReqest httpReqest;
     private ACache aCache;
@@ -89,7 +91,7 @@ public class Fgt_Record extends BaseFgt implements BackString {
                 datas.add(bean1);
             }
             RecordAdapter adapter = new RecordAdapter();
-            adapter.setContext(context);
+            adapter.setContext(context, this);
             adapter.setDatas(datas);
             myRecyclerView.setAdapter(adapter);
         }
@@ -99,5 +101,14 @@ public class Fgt_Record extends BaseFgt implements BackString {
     @Override
     public void onError(Response<String> response) {
         showCView();
+    }
+
+    @Override
+    public void OnItemBack(int position) {
+        Intent intent = new Intent();
+        intent.putExtra("unit_full", datas.get(position).getUnit_full());
+        intent.putExtra("user_score", datas.get(position).getUser_score());
+        intent.putExtra("unit", datas.get(position).getUnit());
+        startAct(intent, Act_AnswerCard.class);
     }
 }

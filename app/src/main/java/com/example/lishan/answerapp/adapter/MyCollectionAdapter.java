@@ -5,11 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.lishan.answerapp.R;
+import com.example.lishan.answerapp.bean.HomeBean;
 import com.example.lishan.answerapp.bean.MyCollectionBean;
+import com.example.lishan.answerapp.view.FullyLinearLayoutManager;
 
 import java.util.List;
 
@@ -19,21 +22,26 @@ import java.util.List;
 
 public class MyCollectionAdapter extends RecyclerView.Adapter<MyCollectionAdapter.MyViewHolder> {
     private Context context;
-    private List<MyCollectionBean> datas;
+    private List<MyCollectionBean.DataBean> datas;
+    private onItemBack onBack;
 
     public Context getContext() {
         return context;
+    }
+
+    public MyCollectionAdapter(onItemBack onBack1) {
+        onBack = onBack1;
     }
 
     public void setContext(Context context) {
         this.context = context;
     }
 
-    public List<MyCollectionBean> getDatas() {
+    public List<MyCollectionBean.DataBean> getDatas() {
         return datas;
     }
 
-    public void setDatas(List<MyCollectionBean> datas) {
+    public void setDatas(List<MyCollectionBean.DataBean> datas) {
         this.datas = datas;
     }
 
@@ -43,8 +51,40 @@ public class MyCollectionAdapter extends RecyclerView.Adapter<MyCollectionAdapte
         return viewHolder;
     }
 
+    MyCollectionChlidAdapter adapter;
+
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
+        final MyCollectionBean.DataBean bean = datas.get(position);
+        holder.title.setText(bean.getUnit());
+        holder.renshu.setText(bean.getUnit_man() + "人回答过");
+        if (bean.isDerail()) {//开
+            holder.myRecyclerView.setVisibility(View.VISIBLE);
+            holder.myImage.setImageResource(R.mipmap.icon_jian);
+            if (bean.getSection().size() > 0) {
+                adapter = new MyCollectionChlidAdapter();
+                adapter.setContext(getContext());
+                adapter.setDatas(bean.getSection());
+                holder.myRecyclerView.setAdapter(adapter);
+                adapter.setOnBack(new MyCollectionChlidAdapter.OnBack() {
+                    @Override
+                    public void OnItemChlid(int childrenPosition) {
+                        onBack.OnChildrenBackItem(position, childrenPosition);
+                    }
+                });
+                FullyLinearLayoutManager manager = new FullyLinearLayoutManager(context);
+                holder.myRecyclerView.setLayoutManager(manager);
+            }
+        } else {//关
+            holder.myRecyclerView.setVisibility(View.GONE);
+            holder.myImage.setImageResource(R.mipmap.icon_add);
+        }
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBack.OnBack(bean.isDerail(), position);
+            }
+        });
     }
 
     @Override
@@ -53,11 +93,25 @@ public class MyCollectionAdapter extends RecyclerView.Adapter<MyCollectionAdapte
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView tv;
+        private RecyclerView myRecyclerView;
+        private ImageView myImage;
+        private TextView renshu, title;
+        private RelativeLayout item;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            tv=itemView.findViewById(R.id.item_colletiontv);
+            myRecyclerView = itemView.findViewById(R.id.item_homechapterRclv);
+            myImage = itemView.findViewById(R.id.item_homechapter);
+            renshu = itemView.findViewById(R.id.home_dati);
+            title = itemView.findViewById(R.id.home_title);
+            item = itemView.findViewById(R.id.homeHaderitem);
         }
+    }
+
+    public interface onItemBack {
+        void OnBack(boolean item, int position);
+
+        void OnChildrenBackItem(int position, int childrenPosition);
+
     }
 }

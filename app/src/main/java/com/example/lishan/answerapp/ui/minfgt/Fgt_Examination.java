@@ -11,7 +11,6 @@ import com.example.lishan.answerapp.bean.SimulationTestBean;
 import com.example.lishan.answerapp.common.BaseFgt;
 import com.example.lishan.answerapp.httppost.BackString;
 import com.example.lishan.answerapp.httppost.HttpReqest;
-import com.example.lishan.answerapp.ui.examination.Act_MultiplayerExamination;
 import com.example.lishan.answerapp.ui.examination.Act_SimulationTest;
 import com.google.gson.Gson;
 import com.lykj.aextreme.afinal.utils.ACache;
@@ -121,6 +120,7 @@ public class Fgt_Examination extends BaseFgt {
 
     /**
      * 调用此方法输入所要转换的时间戳输入例如（1402733340）输出（"2014年06月14日16:09"）
+     *
      * @param time
      * @return
      */
@@ -147,28 +147,30 @@ public class Fgt_Examination extends BaseFgt {
      */
     SimulationTestBean databen;
     Gson gson = new Gson();
+
     public void PostStartKaoShi() {
         showLoading();
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("phone", aCache.getAsString("phone"));
+        Debug.e("phone====" + aCache.getAsString("phone"));
         hashMap.put("token", aCache.getAsString("token"));
+        Debug.e("token====" + aCache.getAsString("token"));
         hashMap.put("password", pwd.getText().toString());
         HttpReqest myReqest = new HttpReqest();
         myReqest.HttpPost("/online/online_start/", hashMap, new BackString() {
             @Override
             public void onSuccess(Response<String> response) {
-                Debug.e("----" + response.body());
                 showCView();
-                if (response.body().contains("null")) {
-                    MyToast.show(context, "密码错误，无法获取题库！");
-                } else {
-                    databen = gson.fromJson(response.body(), SimulationTestBean.class);
-                    Intent intent = new Intent();
-                    Debug.e("---------"+databen.getData().getQuestions().size());
-                    intent.putExtra("indext",0);
-                    intent.putExtra("databen", databen);
-                    startAct(intent, Act_SimulationTest.class);
+                databen = gson.fromJson(response.body(), SimulationTestBean.class);
+                if (databen.getData() == null) {
+                    MyToast.show(context, databen.getMessgae());
+                    return;
                 }
+                Debug.e(response.body());
+                Intent intent = new Intent();
+                intent.putExtra("indext", 0);
+                intent.putExtra("databen", databen);
+                startAct(intent, Act_SimulationTest.class);
             }
 
             @Override

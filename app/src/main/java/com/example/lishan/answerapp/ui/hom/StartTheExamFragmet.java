@@ -1,10 +1,9 @@
-package com.example.lishan.answerapp.adapter;
+package com.example.lishan.answerapp.ui.hom;
 
 import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -12,12 +11,12 @@ import com.example.lishan.answerapp.R;
 import com.example.lishan.answerapp.bean.SimulationTestBean;
 import com.example.lishan.answerapp.bean.SimulationTestFragmetAnswerBean;
 import com.example.lishan.answerapp.bean.SimulationTestFragmetBean;
+import com.example.lishan.answerapp.bean.StartTheExamBean;
 import com.example.lishan.answerapp.common.BaseFgt;
 import com.example.lishan.answerapp.httppost.BackString;
 import com.example.lishan.answerapp.httppost.HttpReqest;
 import com.google.gson.Gson;
 import com.lykj.aextreme.afinal.utils.ACache;
-import com.lykj.aextreme.afinal.utils.Debug;
 import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
@@ -30,19 +29,20 @@ import java.util.List;
  */
 
 @SuppressLint("ValidFragment")
-public class SimulationTestFragmet extends BaseFgt {
+public class StartTheExamFragmet extends BaseFgt {
     private int indxt;
-    private TextView item_subject, t1, t2, t3, t4, t5, t6;
-    private SimulationTestBean dataBean;
-    private SimulationTestBean.DataBean.QuestionsBean item;
+    private TextView item_subject, t1, t2, t3, t4, t5, t6, cuowu, zhengque,msg;
+    private StartTheExamBean.DataBean.QuestionsBean item;
+    private StartTheExamBean dataBean;
     private ImageView img;
     private LinearLayout li1, li2, li3, li4, li5, li6;
     private TextView[] rd = new TextView[6];
     private ACache aCache;
     SimulationTestFragmetAnswerBean answer;
+    private LinearLayout myLiner;//是否显示答案解析
 
     @SuppressLint("ValidFragment")
-    public SimulationTestFragmet(int indxt1, SimulationTestBean dataBean1) {
+    public StartTheExamFragmet(int indxt1, StartTheExamBean dataBean1) {
         this.indxt = indxt1;
         this.dataBean = dataBean1;
         item = dataBean1.getData().getQuestions().get(indxt1);
@@ -56,7 +56,7 @@ public class SimulationTestFragmet extends BaseFgt {
 
     @Override
     public int initLayoutId() {
-        return R.layout.fgt_simulationtest;
+        return R.layout.fgt_starttheexam;
     }
 
     @Override
@@ -82,6 +82,12 @@ public class SimulationTestFragmet extends BaseFgt {
         rd[3] = getViewAndClick(R.id.rb_4);
         rd[4] = getViewAndClick(R.id.rb_5);
         rd[5] = getViewAndClick(R.id.rb_6);
+        setOnClickListener(R.id.sumit_daan);
+        cuowu = getView(R.id.Wrong_answer);//错误答案
+        zhengque = getView(R.id.right_key);//正确答案
+        myLiner = getView(R.id.chose_daan);//答案解析
+        msg=getView(R.id.simulationtest_daan);//查看解析
+        myLiner.setVisibility(View.GONE);
     }
 
     @Override
@@ -107,9 +113,8 @@ public class SimulationTestFragmet extends BaseFgt {
         t2.setText(item.getAnswer_B());
         t3.setText(item.getAnswer_C());
         t4.setText(item.getAnswer_D());
-        t5.setText(item.getAnswer_E());
-        t6.setText(item.getAnswer_F());
-        backData();
+        t5.setText(String.valueOf(item.getAnswer_E()));
+        t6.setText(String.valueOf(item.getAnswer_F()));
     }
 
     @Override
@@ -140,7 +145,7 @@ public class SimulationTestFragmet extends BaseFgt {
                         rd[0].setSelected(true);
                     }
                 }
-                saveAnswer();
+                show_jiexi("A");
                 break;
             case R.id.silin2://选中第二个
             case R.id.rb_2:
@@ -155,7 +160,7 @@ public class SimulationTestFragmet extends BaseFgt {
                         rd[1].setSelected(true);
                     }
                 }
-                saveAnswer();
+                show_jiexi("B");
                 break;
             case R.id.silin3://选中第三个
             case R.id.rb_3:
@@ -170,7 +175,7 @@ public class SimulationTestFragmet extends BaseFgt {
                         rd[2].setSelected(true);
                     }
                 }
-                saveAnswer();
+                show_jiexi("C");
                 break;
             case R.id.silin4://选中第四个
             case R.id.rb_4:
@@ -185,7 +190,7 @@ public class SimulationTestFragmet extends BaseFgt {
                         rd[3].setSelected(true);
                     }
                 }
-                saveAnswer();
+                show_jiexi("D");
                 break;
             case R.id.silin5://选中第五个
             case R.id.rb_5:
@@ -200,7 +205,7 @@ public class SimulationTestFragmet extends BaseFgt {
                         rd[4].setSelected(true);
                     }
                 }
-                saveAnswer();
+                show_jiexi("E");
                 break;
             case R.id.silin6://选中第六个
             case R.id.rb_6:
@@ -215,7 +220,10 @@ public class SimulationTestFragmet extends BaseFgt {
                         rd[5].setSelected(true);
                     }
                 }
-                saveAnswer();
+                show_jiexi("F");
+                break;
+            case R.id.sumit_daan://提交并查看答案
+                show_jiexi("");
                 break;
         }
     }
@@ -252,132 +260,13 @@ public class SimulationTestFragmet extends BaseFgt {
 
     private SimulationTestFragmetBean bean;
 
-    public void saveAnswer() {
-        jieguo = "";
-        for (int i = 0; i < daan.size(); i++) {
-            if (daan.size() == 1) {
-                jieguo += daan.get(i);
-            } else {
-                if (i == (daan.size() - 1)) {
-                    jieguo += daan.get(i);
-                } else {
-                    jieguo += daan.get(i) + ",";
-                }
-            }
-        }
-        Debug.e("----结果--" + jieguo);
-        if (jieguo.length() > 0) {
-            HashMap<String, String> body = new HashMap<>();
-            body.put("phone", aCache.getAsString("phone"));
-            body.put("token", aCache.getAsString("token"));
-            body.put("questions_id", String.valueOf(item.getQuestions_id()));
-            body.put("user_answer", jieguo);
-            HttpReqest httpReqest = new HttpReqest();
-            httpReqest.HttpPost("/online/online_questions_submit/", body, new BackString() {
-                @Override
-                public void onSuccess(Response<String> response) {
-                    Gson gson = new Gson();
-                    bean = gson.fromJson(response.body(), SimulationTestFragmetBean.class);
-                    if (response.body().contains("null")) {
-                        return;
-                    }
-                    Debug.e("----/online/online_questions_submit/-------" + response.body());
-                    String[] str = bean.getData().getUser_answer().split(",");
-                    for (int i = 0; i < str.length; i++) {
-                        switch (str[i]) {
-                            case "A":
-                                rd[0].setSelected(true);
-                                break;
-                            case "B":
-                                rd[1].setSelected(true);
-                                break;
-                            case "C":
-                                rd[2].setSelected(true);
-                                break;
-                            case "D":
-                                rd[3].setSelected(true);
-                                break;
-                            case "E":
-                                rd[4].setSelected(true);
-                                break;
-                            case "F":
-                                rd[5].setSelected(true);
-                                break;
-                        }
-                    }
-
-                }
-
-                @Override
-                public void onError(Response<String> response) {
-
-                }
-            });
-        }
-    }
-
     /**
-     * 获取当前题是否答过
+     * 显示答案解析
      */
-    public void backData() {
-        showLoading();
-        HashMap<String, String> body = new HashMap<>();
-        body.put("phone", aCache.getAsString("phone"));
-        body.put("token", aCache.getAsString("token"));
-        body.put("questions_id", String.valueOf(item.getQuestions_id()));
-        HttpReqest httpReqest = new HttpReqest();
-        httpReqest.HttpPost("/online/online_questions_info/", body, new BackString() {
-            @Override
-            public void onSuccess(Response<String> response) {
-                showCView();
-                Gson gson = new Gson();
-                answer = gson.fromJson(response.body(), SimulationTestFragmetAnswerBean.class);
-                if (response.body().contains("null")) {
-                    return;
-                }
-                String[] str = answer.getData().getUser_answer().split(",");
-                daan.clear();
-                for (int i = 0; i < str.length; i++) {
-                    switch (str[i]) {
-                        case "A":
-                            daan.remove("A");
-                            rd[0].setSelected(true);
-                            daan.add("A");
-                            break;
-                        case "B":
-                            daan.remove("B");
-                            rd[1].setSelected(true);
-                            daan.add("B");
-                            break;
-                        case "C":
-                            daan.remove("C");
-                            rd[2].setSelected(true);
-                            daan.add("C");
-                            break;
-                        case "D":
-                            daan.remove("D");
-                            rd[3].setSelected(true);
-                            daan.add("D");
-                            break;
-                        case "E":
-                            daan.remove("E");
-                            rd[4].setSelected(true);
-                            daan.add("E");
-                            break;
-                        case "F":
-                            daan.remove("F");
-                            rd[5].setSelected(true);
-                            daan.add("F");
-                            break;
-                    }
-                }
-            }
-
-            @Override
-            public void onError(Response<String> response) {
-                showCView();
-            }
-        });
-
+    public void show_jiexi(String cuoti) {
+        myLiner.setVisibility(View.VISIBLE);
+        cuowu.setText(cuoti);
+        zhengque.setText(dataBean.getData().getQuestions().get(indxt).getAnswer());
+        msg.setText(dataBean.getData().getQuestions().get(indxt).getAnswer_info());
     }
 }

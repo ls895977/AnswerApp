@@ -1,5 +1,6 @@
 package com.example.lishan.answerapp.ui.hom;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,6 +10,7 @@ import com.example.lishan.answerapp.adapter.HomeAdapter;
 import com.example.lishan.answerapp.adapter.SearchSuccessAdapter;
 import com.example.lishan.answerapp.bean.HomeBean;
 import com.example.lishan.answerapp.bean.SearchSuccessBean;
+import com.example.lishan.answerapp.bean.StartTheExamBean;
 import com.example.lishan.answerapp.common.BaseAct;
 import com.example.lishan.answerapp.httppost.BackString;
 import com.example.lishan.answerapp.httppost.HttpReqest;
@@ -52,12 +54,6 @@ public class Act_SearchSuccess extends BaseAct implements BackString, HomeAdapte
         PostSearch();
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         mRecyclerView.setLayoutManager(layoutManager);
-//        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-//        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
-//        mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
-//        mRecyclerView
-//                .getDefaultRefreshHeaderView()
-//                .setRefreshTimeVisible(true);
     }
 
     @Override
@@ -149,6 +145,21 @@ public class Act_SearchSuccess extends BaseAct implements BackString, HomeAdapte
 
     @Override
     public void OnChildrenBackItem(int position, int childrenPosition) {
-
+        Intent intent = new Intent();
+        intent.putExtra("position", position);
+        intent.putExtra("childrenPosition", childrenPosition);
+        HomeBean bean = new HomeBean();
+        HomeBean.DataBean data = new HomeBean.DataBean();
+        data.setGroup(searchSuccessBean.getData().get(position).getGroup());
+        data.setGroup_type(searchSuccessBean.getData().get(position).getGroup_type());
+        List<HomeBean.DataBean.UnitBean> datas = new ArrayList<>();
+        HomeBean.DataBean.UnitBean bean1 = new HomeBean.DataBean.UnitBean();
+        datas.add(bean1);
+        data.setUnit(datas);
+        bean.setData(data);
+        intent.putExtra("data", bean);
+        intent.putExtra("unit", searchSuccessBean.getData().get(position).getUnit());
+        intent.putExtra("section",searchSuccessBean.getData().get(position).getSection().get(childrenPosition).getSection());
+        startAct(intent, Act_MultiplayerExamination.class);
     }
 }

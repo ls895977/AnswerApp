@@ -1,6 +1,7 @@
 package com.example.lishan.answerapp.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -92,6 +93,15 @@ public class SimulationTestBean implements Serializable{
             private String answer_F;
             private String questions_score;
             private String answer_E;
+            private List<Object> daan=new ArrayList<>();
+
+            public List<Object> getDaan() {
+                return daan;
+            }
+
+            public void setDaan(List<Object> daan) {
+                this.daan = daan;
+            }
 
             public boolean isDuoxuan() {
                 return duoxuan;

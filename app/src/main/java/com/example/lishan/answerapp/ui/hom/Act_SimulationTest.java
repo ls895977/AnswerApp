@@ -1,5 +1,6 @@
 package com.example.lishan.answerapp.ui.hom;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -28,7 +29,7 @@ import java.util.List;
  * Created by lishan on 2018/2/3.
  */
 
-public class Act_SimulationTest extends BaseAct implements BackString, HomeAdapter.onItemBack, PopupWindowUtil.PopupItem  {
+public class Act_SimulationTest extends BaseAct implements BackString, HomeAdapter.onItemBack, PopupWindowUtil.PopupItem {
     private String tiaojian;
     private XRecyclerView mRecyclerView;
     private PopupWindowUtil utils;
@@ -36,6 +37,7 @@ public class Act_SimulationTest extends BaseAct implements BackString, HomeAdapt
     private List<HomeBean.DataBean.UnitBean> datas;
     private TextView home_title;
     private ACache aCache;
+
     @Override
     public int initLayoutId() {
         return R.layout.act_simulationtest;
@@ -45,7 +47,7 @@ public class Act_SimulationTest extends BaseAct implements BackString, HomeAdapt
     public void initView() {
         hideHeader();
         setOnClickListener(R.id.simulationtest_back);
-        mRecyclerView=getViewAndClick(R.id.simulationtest_recyclerview);
+        mRecyclerView = getViewAndClick(R.id.simulationtest_recyclerview);
     }
 
     @Override
@@ -59,7 +61,7 @@ public class Act_SimulationTest extends BaseAct implements BackString, HomeAdapt
         mRecyclerView.setLoadingMoreEnabled(false);
         mRecyclerView.setPullRefreshEnabled(false);
         postData();
-       }
+    }
 
     @Override
     public void requestData() {
@@ -73,11 +75,11 @@ public class Act_SimulationTest extends BaseAct implements BackString, HomeAdapt
 
     @Override
     public void onViewClick(View v) {
-            switch (v.getId()){
-                case R.id.simulationtest_back:
-                    finish();
-                    break;
-            }
+        switch (v.getId()) {
+            case R.id.simulationtest_back:
+                finish();
+                break;
+        }
     }
 
 
@@ -96,7 +98,13 @@ public class Act_SimulationTest extends BaseAct implements BackString, HomeAdapt
 
     @Override
     public void OnChildrenBackItem(int position, int childrenPosition) {
-
+        Intent intent = new Intent();
+        intent.putExtra("position", position);
+        intent.putExtra("childrenPosition", childrenPosition);
+        intent.putExtra("data", bean);
+        intent.putExtra("unit", datas.get(position).getUnit());
+        intent.putExtra("section", datas.get(position).getSection().get(childrenPosition).getSection());
+        startAct(intent, Act_MultiplayerExamination.class);
     }
 
     public void postData() {
@@ -110,7 +118,8 @@ public class Act_SimulationTest extends BaseAct implements BackString, HomeAdapt
     HomeBean bean;
 
     HomeAdapter myAdapter;
-    Gson gson=new Gson();
+    Gson gson = new Gson();
+
     @Override
     public void onSuccess(Response<String> response) {
         Debug.e(response.body());
@@ -141,9 +150,10 @@ public class Act_SimulationTest extends BaseAct implements BackString, HomeAdapt
         showCView();
     }
 
+    private int childrenPosition1;
+
     @Override
     public void OnBackpopupItem(int position) {
-
     }
 
     public void setData(HomeBean data) {

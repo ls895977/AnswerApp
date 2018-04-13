@@ -1,5 +1,6 @@
 package com.example.lishan.answerapp.ui.my;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import com.example.lishan.answerapp.bean.MyCollectionBean;
 import com.example.lishan.answerapp.common.BaseAct;
 import com.example.lishan.answerapp.httppost.BackString;
 import com.example.lishan.answerapp.httppost.HttpReqest;
+import com.example.lishan.answerapp.ui.hom.Act_MultiplayerExamination;
 import com.example.lishan.answerapp.view.FullyLinearLayoutManager;
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
@@ -20,10 +22,6 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.lykj.aextreme.afinal.utils.ACache;
 import com.lykj.aextreme.afinal.utils.Debug;
 import com.lzy.okgo.model.Response;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,10 +32,12 @@ import java.util.List;
  * Created by lishan on 2018/1/27.
  */
 
-public class Act_MyCollection extends BaseAct implements BackString, HomeAdapter.onItemBack, XRecyclerView.LoadingListener {
+public class Act_MyCollection extends BaseAct implements BackString, XRecyclerView.LoadingListener, MyCollectionAdapter.onItemBack {
     private XRecyclerView mRecyclerView;
     private HttpReqest httpReqest;
     private ACache aCache;
+    private MyCollectionBean collectionBean;
+
     @Override
     public int initLayoutId() {
         return R.layout.act_mycollection;
@@ -49,7 +49,7 @@ public class Act_MyCollection extends BaseAct implements BackString, HomeAdapter
         setOnClickListener(R.id.mycollection_back);
         mRecyclerView = getView(R.id.mycollection_xRecyclerView);
         httpReqest = new HttpReqest();
-        aCache=ACache.get(this);
+        aCache = ACache.get(this);
     }
 
     @Override
@@ -86,33 +86,34 @@ public class Act_MyCollection extends BaseAct implements BackString, HomeAdapter
         }
     }
 
-    HomeBean bean;
     Gson gson = new Gson();
+    MyCollectionAdapter collectionAdapter;
 
     @Override
     public void onSuccess(Response<String> response) {
-        Debug.e("-------"+response.body());
-//        bean = gson.fromJson(response.body(), HomeBean.class);
-//        if (bean.getMessgae().equals("成功刷新数据！")) {
-//            if (datas.size() == 0) {
-//                setData(bean);
-//                myAdapter = new HomeAdapter(Act_MyCollection.this);
-//                myAdapter.setDatas(datas);
-//                myAdapter.setContext(context);
-//                mRecyclerView.setAdapter(myAdapter);
-//                mRecyclerView.refreshComplete();
-//            } else {
-//                setData(bean);
-//                if (bean.getData().getUnit().size() > 0) {
-//                    mRecyclerView.loadMoreComplete();
-//                    myAdapter.notifyDataSetChanged();
-//                } else {
-//                    myAdapter.notifyDataSetChanged();
-//                    mRecyclerView.setNoMore(true);
-//                }
-//            }
-//        }
-//        showCView();
+        collectionBean = gson.fromJson(response.body(), MyCollectionBean.class);
+        if (response.body().contentEquals("null")) {
+            Debug.e("------------------");
+            return;
+        }
+        if (datasBean.size() == 0) {
+            setData(collectionBean);
+            collectionAdapter = new MyCollectionAdapter(Act_MyCollection.this);
+            collectionAdapter.setDatas(datasBean);
+            collectionAdapter.setContext(context);
+            mRecyclerView.setAdapter(collectionAdapter);
+            mRecyclerView.refreshComplete();
+        } else {
+            setData(collectionBean);
+            if (collectionBean.getData().size() > 0) {
+                mRecyclerView.loadMoreComplete();
+                collectionAdapter.notifyDataSetChanged();
+            } else {
+                collectionAdapter.notifyDataSetChanged();
+                mRecyclerView.setNoMore(true);
+            }
+        }
+        showCView();
     }
 
     @Override
@@ -120,39 +121,20 @@ public class Act_MyCollection extends BaseAct implements BackString, HomeAdapter
 
     }
 
-    private List<HomeBean.DataBean.UnitBean> datas = new ArrayList<>();
+    private List<MyCollectionBean.DataBean> datasBean = new ArrayList<>();
     HomeAdapter myAdapter;
 
-    public void setData(HomeBean data) {
-        for (int i = 0; i < data.getData().getUnit().size(); i++) {
-            HomeBean.DataBean.UnitBean bean = data.getData().getUnit().get(i);
-            bean.setDerail(false);
-            datas.add(bean);
+    public void setData(MyCollectionBean data) {
+        for (int i = 0; i < data.getData().size(); i++) {
+            MyCollectionBean.DataBean bean = data.getData().get(i);
+            datasBean.add(bean);
         }
-    }
-
-    @Override
-    public void OnBack(boolean item, int position) {
-        if (datas.get(position).getSection().size() < 0) {
-            return;
-        }
-        if (datas.get(position).isDerail() == true) {
-            datas.get(position).setDerail(false);
-        } else {
-            datas.get(position).setDerail(true);
-        }
-        myAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void OnChildrenBackItem(int position, int childrenPosition) {
-
     }
 
     @Override
     public void onRefresh() {
         index = 1;
-        datas.clear();
+        datasBean = new ArrayList<>();
         postData();
     }
 
@@ -162,14 +144,48 @@ public class Act_MyCollection extends BaseAct implements BackString, HomeAdapter
         postData();
     }
 
-    int index = 0;
+    int index = 1;
 
     public void postData() {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("phone", aCache.getAsString("phone"));
-        hashMap.put("token",aCache.getAsString("token"));
+        hashMap.put("token", aCache.getAsString("token"));
         hashMap.put("pageNumber", String.valueOf(index));
         HttpReqest myReqest = new HttpReqest();
         myReqest.HttpPost("/exam/collect_list/", hashMap, this);
+    }
+
+    @Override
+    public void OnBack(boolean item, int position) {
+        if (datasBean.get(position).getSection().size() < 0) {
+            return;
+        }
+        if (datasBean.get(position).isDerail() == true) {
+            datasBean.get(position).setDerail(false);
+        } else {
+            datasBean.get(position).setDerail(true);
+        }
+        collectionAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void OnChildrenBackItem(int position, int childrenPosition) {
+        Intent intent = new Intent();
+        intent.putExtra("position", position);
+        intent.putExtra("childrenPosition", childrenPosition);
+        HomeBean bean = new HomeBean();
+        HomeBean.DataBean.UnitBean unitBean = new HomeBean.DataBean.UnitBean();
+        List<HomeBean.DataBean.UnitBean> datas = new ArrayList<>();
+        datas.add(unitBean);
+        HomeBean.DataBean dataBean = new HomeBean.DataBean();
+        dataBean.setUnit(datas);
+        bean.setData(dataBean);
+        String[] str = datasBean.get(position).getUnit().split("-");
+        dataBean.setGroup(str[0]);
+        dataBean.setGroup_type(str[1]);
+        intent.putExtra("data", bean);
+        intent.putExtra("unit", datasBean.get(position).getUnit());
+        intent.putExtra("section", datasBean.get(position).getSection().get(childrenPosition).getSection());
+        startAct(intent, Act_MultiplayerExamination.class);
     }
 }
