@@ -91,6 +91,7 @@ public class Act_StartTheExam extends BaseActivity {
 
     public void SimulationTest() {
         dataBean = (StartTheExamBean) getIntent().getSerializableExtra("data");
+
         num.setText(1 + "/" + dataBean.getData().getQuestions().size());
         timu.setText(dataBean.getData().getQuestions().get(0).getQuestions_id() + "号题目:");
         tixing.setText(dataBean.getData().getQuestions().get(0).getQuestions_type());

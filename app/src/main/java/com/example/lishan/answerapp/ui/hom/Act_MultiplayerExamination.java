@@ -21,14 +21,11 @@ import com.lzy.okgo.model.Response;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-
 /**
  * 多人考试第二页
  * Created by lishan on 2018/2/6.
  */
-
 public class Act_MultiplayerExamination extends BaseAct {
-    private int position, childrenPosition;
     HomeBean bean;
     private TextView title, date, manfen, time, hege, renshu, starTime, xingxi;
     private ACache aCache;
@@ -56,8 +53,6 @@ public class Act_MultiplayerExamination extends BaseAct {
 
     @Override
     public void initData() {
-        position = getIntent().getIntExtra("position", 100);
-        childrenPosition = getIntent().getIntExtra("childrenPosition", 100);
         bean = (HomeBean) getIntent().getSerializableExtra("data");
         unit = getIntent().getStringExtra("unit");
         section = getIntent().getStringExtra("section");
@@ -102,7 +97,6 @@ public class Act_MultiplayerExamination extends BaseAct {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("phone", aCache.getAsString("phone"));
         hashMap.put("token", aCache.getAsString("token"));
-
         hashMap.put("group", bean.getData().getGroup());
         Debug.e("--group--" + bean.getData().getGroup());
         hashMap.put("group_type", bean.getData().getGroup_type());

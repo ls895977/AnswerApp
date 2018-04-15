@@ -9,10 +9,12 @@ import android.widget.TextView;
 import com.example.lishan.answerapp.R;
 import com.example.lishan.answerapp.adapter.AnswerCardAdapter;
 import com.example.lishan.answerapp.bean.AnswerCardBean;
+import com.example.lishan.answerapp.bean.StartTheExamBean;
 import com.example.lishan.answerapp.common.BaseAct;
 import com.example.lishan.answerapp.httppost.BackString;
 import com.example.lishan.answerapp.httppost.HttpReqest;
 import com.example.lishan.answerapp.ui.hom.Act_MultiplayerExamination;
+import com.example.lishan.answerapp.ui.hom.Act_StartTheExam;
 import com.google.gson.Gson;
 import com.lykj.aextreme.afinal.utils.ACache;
 import com.lykj.aextreme.afinal.utils.Debug;
@@ -56,12 +58,17 @@ public class Act_AnswerCard extends BaseAct {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                Intent intent = new Intent();
-//                intent.putExtra("position", position);
-//                intent.putExtra("childrenPosition", childrenPosition);
 //                intent.putExtra("data", bean);
 //                intent.putExtra("unit",datas.getData().get(position).get(position).getUnit());
 //                intent.putExtra("section",.get(position).getSection().get(childrenPosition).getSection());
 //                startAct(intent, Act_MultiplayerExamination.class);
+//                StartTheExamBean dataBean=new StartTheExamBean();
+//                StartTheExamBean.DataBean.QuestionsBean
+
+
+//                Intent intent = new Intent();
+//                intent.putExtra("data", dataBean);
+//                startAct(intent, Act_StartTheExam.class);
             }
         });
     }
@@ -93,8 +100,11 @@ public class Act_AnswerCard extends BaseAct {
         HttpReqest httpReqest = new HttpReqest();
         HashMap<String, String> body = new HashMap<>();
         body.put("phone", aCache.getAsString("phone"));
+        Debug.e("phone====="+aCache.getAsString("phone"));
         body.put("token", aCache.getAsString("token"));
+        Debug.e("token====="+aCache.getAsString("token"));
         body.put("unit", unit);
+        Debug.e("unit====="+unit);
         httpReqest.HttpPost("/online/record_content/", body, new BackString() {
             @Override
             public void onSuccess(Response<String> response) {
@@ -103,6 +113,8 @@ public class Act_AnswerCard extends BaseAct {
                 datas = gson.fromJson(response.body(), AnswerCardBean.class);
                 answerCardAdapter = new AnswerCardAdapter(context, datas.getData());
                 myGridView.setAdapter(answerCardAdapter);
+
+
             }
 
             @Override
@@ -110,7 +122,6 @@ public class Act_AnswerCard extends BaseAct {
                 showCView();
             }
         });
-
-
     }
+
 }
