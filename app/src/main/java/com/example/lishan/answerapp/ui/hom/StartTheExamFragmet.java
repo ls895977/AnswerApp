@@ -31,7 +31,7 @@ import java.util.List;
 @SuppressLint("ValidFragment")
 public class StartTheExamFragmet extends BaseFgt {
     private int indxt;
-    private TextView item_subject, t1, t2, t3, t4, t5, t6, cuowu, zhengque,msg;
+    private TextView item_subject, t1, t2, t3, t4, t5, t6, cuowu, zhengque, sumit_daan, msg;
     private StartTheExamBean.DataBean.QuestionsBean item;
     private StartTheExamBean dataBean;
     private ImageView img;
@@ -40,6 +40,11 @@ public class StartTheExamFragmet extends BaseFgt {
     private ACache aCache;
     SimulationTestFragmetAnswerBean answer;
     private LinearLayout myLiner;//是否显示答案解析
+    String mm = null;
+
+    public void setOnShow(String mm1) {
+        mm = mm1;
+    }
 
     @SuppressLint("ValidFragment")
     public StartTheExamFragmet(int indxt1, StartTheExamBean dataBean1) {
@@ -82,11 +87,11 @@ public class StartTheExamFragmet extends BaseFgt {
         rd[3] = getViewAndClick(R.id.rb_4);
         rd[4] = getViewAndClick(R.id.rb_5);
         rd[5] = getViewAndClick(R.id.rb_6);
-        setOnClickListener(R.id.sumit_daan);
+        sumit_daan = getViewAndClick(R.id.sumit_daan);
         cuowu = getView(R.id.Wrong_answer);//错误答案
         zhengque = getView(R.id.right_key);//正确答案
         myLiner = getView(R.id.chose_daan);//答案解析
-        msg=getView(R.id.simulationtest_daan);//查看解析
+        msg = getView(R.id.simulationtest_daan);//查看解析
         myLiner.setVisibility(View.GONE);
     }
 
@@ -99,6 +104,12 @@ public class StartTheExamFragmet extends BaseFgt {
 
     @Override
     public void initData() {
+        if(mm!=null){
+            sumit_daan.setVisibility(View.GONE);
+            show_jiexi("");
+        }else {
+            sumit_daan.setVisibility(View.VISIBLE);
+        }
         aCache = ACache.get(context);
         if (item.getQuestions_type().equals("单选题")) {
             li5.setVisibility(View.GONE);

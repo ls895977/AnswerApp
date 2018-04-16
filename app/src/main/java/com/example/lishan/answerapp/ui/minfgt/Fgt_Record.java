@@ -84,6 +84,7 @@ public class Fgt_Record extends BaseFgt implements BackString, RecordAdapter.OnB
 
     @Override
     public void onSuccess(Response<String> response) {
+        Debug.e(response.body());
         RecordBean bean = gson.fromJson(response.body(), RecordBean.class);
         if (bean.getCode() == 200) {
             for (int i = 0; i < bean.getData().size(); i++) {
