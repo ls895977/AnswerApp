@@ -16,14 +16,22 @@ import com.example.lishan.answerapp.ui.hom.StartTheExamFragmet;
  */
 public class StartTheExamAdapter extends FragmentStatePagerAdapter {
     StartTheExamBean data;
+    String mmc = null;
+
+    public void setOnShow(String mmc1) {
+        mmc = mmc1;
+    }
 
     public StartTheExamAdapter(FragmentManager fm, StartTheExamBean datas) {
         super(fm);
         data = datas;
     }
+
     @Override
     public Fragment getItem(int arg0) {
-        return new StartTheExamFragmet(arg0, data);
+        StartTheExamFragmet startTheExamFragmet = new StartTheExamFragmet(arg0, data);
+        startTheExamFragmet.setOnShow(mmc);
+        return startTheExamFragmet;
     }
 
     @Override

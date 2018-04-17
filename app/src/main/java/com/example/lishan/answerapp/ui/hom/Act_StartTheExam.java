@@ -91,7 +91,6 @@ public class Act_StartTheExam extends BaseActivity {
 
     public void SimulationTest() {
         dataBean = (StartTheExamBean) getIntent().getSerializableExtra("data");
-
         num.setText(1 + "/" + dataBean.getData().getQuestions().size());
         timu.setText(dataBean.getData().getQuestions().get(0).getQuestions_id() + "号题目:");
         tixing.setText(dataBean.getData().getQuestions().get(0).getQuestions_type());
@@ -119,6 +118,17 @@ public class Act_StartTheExam extends BaseActivity {
 
             }
         });
+        if (getIntent().getStringExtra("status_A") != null && getIntent().getStringExtra("status_A").equals("1")) {
+            collec.setVisibility(View.GONE);
+            int indext;
+            indext = getIntent().getIntExtra("indext",100);
+            num.setText((indext+1) + "/" + dataBean.getData().getQuestions().size());
+            myViewPager.setCurrentItem(indext);
+            pagerAdapter.setOnShow("shi");
+        } else {
+            collec.setVisibility(View.VISIBLE);
+            num.setText(1 + "/" + dataBean.getData().getQuestions().size());
+        }
     }
 
     /**

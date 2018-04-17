@@ -111,12 +111,10 @@ public class SimulationTestFragmet extends BaseFgt {
         t6.setText(item.getAnswer_F());
         backData();
     }
-
     @Override
     public void requestData() {
 
     }
-
     @Override
     public void updateUI() {
 
